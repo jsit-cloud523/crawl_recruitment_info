@@ -42,7 +42,7 @@ class Handle(object):
                 replyMsg = reply.TextMsg(toUser, fromUser, content)
                 return replyMsg.send()
             elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'event':
-		print "event process"
+                print "event process"
                 toUser = recMsg.FromUserName
                 fromUser = recMsg.ToUserName
                 content = "欢迎关注云计算工作室，回复职位名称，即可订阅招聘信息。"
