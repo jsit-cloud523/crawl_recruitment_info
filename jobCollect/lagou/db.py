@@ -5,7 +5,7 @@ import logging
 
 
 
-def insert(job):
+def insert(job, cat_list):
     logging.basicConfig(level=logging.DEBUG)
     conn = pymysql.connect(host='127.0.0.1',port= 3306,user = 'root',passwd='000000',db='spiderjob')
     cur = conn.cursor()
@@ -15,8 +15,10 @@ def insert(job):
     else:  # 库中没有数据
         logging.info("new data---" + "data id:" + job[1])
         ret = cur.execute("insert into lagou(position_name, position_id, address, format_time, money,"
-                          "requirement, company_name, industry, label, strengs, create_time)"
-                          " values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", [x.encode('utf-8') for x in job])
+                          "requirement, company_name, industry, label, strengs, create_time, grade1_cat,"
+                          "grade2_cat, grade3_cat)"
+                          " values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                          [x.encode('utf-8') for x in job] + [x.encode('utf-8') for x in cat_list])
     conn.commit()
     cur.close()
     conn.close()
