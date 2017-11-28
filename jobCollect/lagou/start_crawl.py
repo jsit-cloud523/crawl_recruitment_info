@@ -30,7 +30,7 @@ def process_one_cat(url, cat_list):
     global_var.set_value("isLastPage", False)
     while True:
         page_num = global_var.get_value('PAGE_NUM_PROCESSING')
-        tmp_url = url + str(page_num)
+        tmp_url = url + str(page_num) + "/"
         # getJobList(tmp_url)
         print("while True main:" + tmp_url)
         s = requests.Session()

@@ -5,6 +5,7 @@ import requests
 import time
 import global_var
 import re
+import logging
 
 
 class Lagou:
@@ -192,9 +193,13 @@ class Lagou:
                 for joblist in joblistgen:
                     yield joblist
         else:
-            # print(response.text)
-            print("被检测出来了。。。。")
-            return
+            no_position = selector.xpath('//div[text()="暂时没有符合该搜索条件的职位"]')
+            if no_position:
+                logging.info("no position: " + url)
+            else:
+                # print(response.text)
+                print("被检测出来了。。。。")
+                return
 
 
 
