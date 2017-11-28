@@ -196,6 +196,8 @@ class Lagou:
             no_position = selector.xpath('//div[text()="暂时没有符合该搜索条件的职位"]')
             if no_position:
                 logging.info("no position: " + url)
+                global_var.set_value("isLastPage", True)
+                return
             else:
                 # print(response.text)
                 print("被检测出来了。。。。")
